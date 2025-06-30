@@ -1,4 +1,5 @@
-import {StreamChat} from "stream-chat"
+import pkg from 'stream-chat';
+const { StreamChat } = pkg;
 import "dotenv/config.js"
 
 const apiKey =  process.env.STEAM_API_KEY
@@ -16,4 +17,11 @@ export const upsertStreamUser = async (userData) => {
     }
 }
 
-//export const generateStreamToken = {userId} => {};
+export const generateStreamToken = (userId) => {
+    try {
+        const userIdStr = userId.toString()
+        return streamCient.createToken(userIdStr)
+    } catch (error) {
+        console.error("Error generating stream token: ", error)
+    }
+};
